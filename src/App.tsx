@@ -1,7 +1,7 @@
 import "./App.css";
 
 function App() {
-  return <></>;
+  return <main className="w-screen h-screen bg-background"></main>;
 }
 
 export default App;
