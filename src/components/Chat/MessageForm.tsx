@@ -7,7 +7,8 @@ export const MessageForm = () => {
 
   const handleSendMessage = (e: React.FormEvent) => {
     e.preventDefault();
-    if (messageContent.trim() === "") return;
+    if (messageContent.trim() === "" || messageContent.trim().length > 100)
+      return;
     addMessage(messageContent);
     setMessageContent("");
   };
