@@ -40,12 +40,12 @@ Start the clientę
 
 To run this project, you will need to add the following environment variables to your .env file
 
-- `apiKey`
-- `authDomain`
-- `projectId`
-- `storageBucket`
-- `messagingSenderId`
-- `appId`
+- `VITE_API_KEY`
+- `VITE_AUTH_DOMAIN`
+- `VITE_PROJECT_ID`
+- `VITE_STORAGE_BUCKET`
+- `VITE_MESSAGING_SENDERID`
+- `VITE_APPID`
 
 ## What I learned
 

@@ -4,11 +4,14 @@ export default {
   theme: {
     extend: {
       colors: {
-        text: "#f0f0f5",
-        background: "#020203",
-        primary: "#3d3d57",
-        secondary: "#0f0f15",
-        accent: "#62638d",
+        text: "#e2e3ee",
+        background: "#0b0c13",
+        primary: "#afb1cf",
+        secondary: "#1d1e30",
+        accent: "#7072a9",
+      },
+      fontFamily: {
+        poppins: "Poppins",
       },
     },
   },
