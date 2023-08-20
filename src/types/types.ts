@@ -14,9 +14,9 @@ export type IUser = {
 };
 
 export type IMessage = {
-  content: string;
-  createdAt: unknown;
-  displayName: string;
-  id: number;
-  photoURL: string;
+  content?: string;
+  createdAt?: unknown;
+  displayName?: string;
+  id: number | string;
+  photoURL?: string;
 };

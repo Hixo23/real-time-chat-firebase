@@ -4,6 +4,7 @@ export const Chat = () => {
   return (
     <>
       <Header />
+      <section></section>
     </>
   );
 };
