@@ -14,10 +14,14 @@ export const Message = ({ content, displayName, photoURL }: IMessage) => {
     <div
       ref={messageRef}
       className={`my-4 flex justify-start ${
-        user?.displayName === displayName && "mr-4 flex-row-reverse"
-      } items-center gap-4`}
+        user?.displayName === displayName && "mr-4 justify-end flex-row-reverse"
+      } gap-4`}
     >
-      <img className="rounded-full w-16 h-16" src={photoURL} alt="" />
+      <img
+        className="rounded-full w-16 h-16 translate-y-8"
+        src={photoURL}
+        alt=""
+      />
       <div className="flex flex-col gap-2 items-end">
         <span className="text-accent">{displayName}</span>
         <p
