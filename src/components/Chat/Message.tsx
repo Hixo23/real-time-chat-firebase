@@ -22,7 +22,7 @@ export const Message = ({ content, displayName, photoURL }: IMessage) => {
         src={photoURL}
         alt=""
       />
-      <div className="flex flex-col gap-2 items-end">
+      <div className="flex flex-col gap-2">
         <span className="text-accent">{displayName}</span>
         <p
           className={`${
