@@ -13,7 +13,7 @@ export const Message = ({ content, displayName, photoURL }: IMessage) => {
   return (
     <div
       ref={messageRef}
-      className={`my-4 flex justify-start ${
+      className={`my-4 flex justify-start ml-4 ${
         user?.displayName === displayName && "mr-4 flex-row-reverse"
       } gap-4`}
     >
