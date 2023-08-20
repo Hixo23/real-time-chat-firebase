@@ -61,13 +61,12 @@ export const useChat = () => {
       doc.docs
         .map((doc) => messages.push({ id: doc.id, ...doc.data() }))
         .reverse();
-      setMessages(messages);
+      setMessages(messages.reverse());
     });
-
     return () => {
       unsubscribe;
     };
-  });
+  }, []);
 
   const { user } = useAuth();
 
