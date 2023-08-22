@@ -32,7 +32,7 @@ const Profile = () => {
     <div
       onClick={() => setIsDropdownOpen(!isDropdownOpen)}
       ref={menuRef}
-      className="flex items-center gap-4 relative cursor-pointer select-none"
+      className="flex items-center gap-4 relative cursor-pointer select-none z-20"
     >
       <img
         className="rounded-full w-12 h-12"

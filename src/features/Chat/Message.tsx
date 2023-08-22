@@ -18,7 +18,7 @@ export const Message = ({ content, displayName, photoURL }: MessageProps) => {
       ref={messageRef}
       className={`my-4 flex justify-start ml-4 ${
         isOwnerMessage && "mr-4 flex-row-reverse"
-      } gap-4`}
+      } gap-4 z-0`}
     >
       <img
         className="rounded-full w-16 h-16 translate-y-8"
