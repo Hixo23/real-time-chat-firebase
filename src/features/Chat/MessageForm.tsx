@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useChat } from "../../services/firebase/firebase";
+import toast from "react-hot-toast";
 
 export const MessageForm = () => {
   const [messageContent, setMessageContent] = useState<string>("");
@@ -12,7 +13,13 @@ export const MessageForm = () => {
 
     const isEmpty = message.length === 0;
 
-    if (isEmpty) return;
+    if (isEmpty)
+      return toast.error("You must type something!", {
+        style: {
+          background: "#0b0c13",
+          color: "#fff",
+        },
+      });
 
     addMessage(messageContent);
     setMessageContent("");
@@ -31,7 +38,6 @@ export const MessageForm = () => {
         placeholder="Type something..."
         aria-label="Type something..."
         type="text"
-        required
         max={124}
         min={1}
         value={messageContent}

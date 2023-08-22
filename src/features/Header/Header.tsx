@@ -1,4 +1,4 @@
-import React, { ElementRef, useRef, useState } from "react";
+import { ElementRef, useRef, useState } from "react";
 import { useAuth } from "../../services/firebase/firebase";
 
 export const Header = () => {
