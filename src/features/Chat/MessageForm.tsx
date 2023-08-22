@@ -16,9 +16,9 @@ export const MessageForm = () => {
     if (isEmpty)
       return toast.error("You must type something!", {
         style: {
-          background: "#0b0c13",
           color: "#fff",
         },
+        className: "bg-accent",
       });
 
     addMessage(messageContent);

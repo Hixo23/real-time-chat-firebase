@@ -17,7 +17,6 @@ const Profile = () => {
   const menuRef = useRef<ElementRef<"div">>(null);
 
   const closeOpenMenus = (e: MouseEvent) => {
-    if (e.target) return;
     if (
       menuRef.current &&
       isDropdownOpen &&
