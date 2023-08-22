@@ -7,11 +7,19 @@ export const MessageForm = () => {
 
   const handleSendMessage = (e: React.FormEvent) => {
     e.preventDefault();
-    if (messageContent.trim() === "" || messageContent.trim().length > 100)
-      return;
+
+    const message = messageContent.trim();
+
+    const isEmpty = message.length === 0;
+
+    if (isEmpty) return;
+
     addMessage(messageContent);
     setMessageContent("");
   };
+
+  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setMessageContent(e.target.value);
 
   return (
     <form
@@ -19,11 +27,15 @@ export const MessageForm = () => {
       className="w-screen flex justify-center h-12 my-2"
     >
       <input
-        className="md:w-[95%] w-[70%] p-4 bg-secondary rounded-l-lg md:outline-none"
+        className=" w-[70%] p-4 bg-secondary rounded-l-lg md:outline-none"
         placeholder="Type something..."
+        aria-label="Type something..."
         type="text"
+        required
+        max={124}
+        min={1}
         value={messageContent}
-        onChange={(e) => setMessageContent(e.target.value)}
+        onChange={handleInput}
       />
       <button className="bg-accent rounded-r-lg px-4">Send</button>
     </form>

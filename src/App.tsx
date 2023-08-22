@@ -3,15 +3,15 @@ import { Chat } from "./pages/Chat/Chat";
 import { useAuth } from "./services/firebase/firebase";
 
 function App() {
-  const { isLogged } = useAuth();
+  const { user } = useAuth();
 
   return (
     <main
       className={`w-screen h-screen bg-background flex ${
-        !isLogged && "justify-center items-center"
+        !user && "justify-center items-center"
       }`}
     >
-      {isLogged ? <Chat /> : <SignIn />}
+      {user ? <Chat /> : <SignIn />}
     </main>
   );
 }

@@ -1,5 +1,6 @@
 import {
   GoogleAuthProvider,
+  User,
   getAuth,
   signInWithPopup,
   signOut,
@@ -12,27 +13,33 @@ import {
   onSnapshot,
   query,
   serverTimestamp,
+  CollectionReference,
+  deleteDoc,
+  doc,
 } from "firebase/firestore";
-import type { IMessage, IUser } from "../../types/types";
 import { useEffect, useState } from "react";
 import { firebaseConfig } from "./config";
 import { initializeApp } from "firebase/app";
+
+export type TMessage = {
+  content?: string;
+  createdAt?: unknown;
+  displayName?: string;
+  messageId: number | string;
+  photoURL?: string;
+  id: string;
+};
 
 initializeApp(firebaseConfig);
 
 const auth = getAuth();
 export const useAuth = () => {
-  const [user, setUser] = useState<IUser | null>();
-
-  const isLogged = user !== null;
+  const [user, setUser] = useState<User | null>();
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((data: IUser | any) =>
-      setUser(data)
-    );
-    return () => {
-      unsubscribe;
-    };
+    const unsubscribe = auth.onAuthStateChanged((data) => setUser(data));
+
+    return unsubscribe;
   });
 
   const signInWithGoogle = () => {
@@ -45,27 +52,30 @@ export const useAuth = () => {
     signOut(auth);
   };
 
-  return { user, isLogged, signInWithGoogle, logOut };
+  return { user, signInWithGoogle, logOut };
 };
 
+const firestore = getFirestore();
 export const useChat = () => {
-  const firestore = getFirestore();
-  const [messages, setMessages] = useState<IMessage[] | null>(null);
-
-  const messagesCollection = collection(firestore, "messages");
-  const messagesQuery = query(messagesCollection, orderBy("createdAt", "desc"));
+  const [messages, setMessages] = useState<TMessage[] | null>(null);
 
   useEffect(() => {
+    const messagesCollection = collection(
+      firestore,
+      "messages"
+    ) as CollectionReference<TMessage>;
+    const messagesQuery = query(
+      messagesCollection,
+      orderBy("createdAt", "desc")
+    );
+
     const unsubscribe = onSnapshot(messagesQuery, (doc) => {
-      const messages: IMessage[] = [];
-      doc.docs
-        .map((doc) => messages.push({ id: doc.id, ...doc.data() }))
-        .reverse();
-      setMessages(messages.reverse());
+      setMessages(
+        doc.docs.map((doc) => ({ ...doc.data(), id: doc.id })).reverse()
+      );
     });
-    return () => {
-      unsubscribe;
-    };
+
+    return unsubscribe;
   }, []);
 
   const { user } = useAuth();
@@ -76,9 +86,13 @@ export const useChat = () => {
       content,
       photoURL: user?.photoURL,
       createdAt: serverTimestamp(),
-      id: Math.random(),
+      messageId: Math.random(),
     });
   };
 
-  return { addMessage, messages };
+  const deleteMessage = (id: string) => {
+    deleteDoc(doc(firestore, "messages", id));
+  };
+
+  return { addMessage, messages, deleteMessage };
 };
