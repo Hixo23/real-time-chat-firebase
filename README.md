@@ -1,6 +1,6 @@
 # Real Time chat
 
-Link to demo:
+Link to demo: https://elegant-marigold-0027cb.netlify.app/
 
 ## Tech Stack
 
