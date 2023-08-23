@@ -13,6 +13,14 @@ export const MessageForm = () => {
 
     const isEmpty = message.length === 0;
 
+    if (message.length > 50)
+      return toast.error("Message shouldn't be longer than 50 characters", {
+        style: {
+          color: "#fff",
+          backgroundColor: "#7072a9",
+        },
+      });
+
     if (isEmpty)
       return toast.error("You must type something!", {
         style: {
@@ -38,7 +46,7 @@ export const MessageForm = () => {
         placeholder="Type something..."
         aria-label="Type something..."
         type="text"
-        max={124}
+        max={100}
         min={1}
         value={messageContent}
         onChange={handleInput}
