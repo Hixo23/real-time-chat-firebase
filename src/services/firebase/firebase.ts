@@ -35,9 +35,13 @@ initializeApp(firebaseConfig);
 const auth = getAuth();
 export const useAuth = () => {
   const [user, setUser] = useState<User | null>();
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((data) => setUser(data));
+    const unsubscribe = auth.onAuthStateChanged((data) => {
+      setUser(data);
+      setIsLoading(false);
+    });
 
     return unsubscribe;
   });
@@ -52,7 +56,7 @@ export const useAuth = () => {
     signOut(auth);
   };
 
-  return { user, signInWithGoogle, logOut };
+  return { user, signInWithGoogle, logOut, isLoading };
 };
 
 const firestore = getFirestore();
