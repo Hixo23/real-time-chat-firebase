@@ -25,7 +25,7 @@ export const MessageForm = () => {
       );
 
     if (isEmpty)
-      return toast.error("You must type something!", {
+      return toast.error("You have to type something!", {
         style: {
           color: "#fff",
           backgroundColor: "#7072a9",
