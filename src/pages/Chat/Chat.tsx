@@ -10,7 +10,7 @@ export const Chat = () => {
     <div className="flex flex-col">
       <Header />
       <Toaster />
-      <section className="overflow-y-scroll w-full h-full px-4 py-8">
+      <section className="overflow-y-scroll w-full h-full px-4 py-8 scrollbar scrollbar-thumb-accent scrollbar-track-primary scrollbar-h-full">
         {messages?.map((message) => (
           <Message key={message.messageId} {...message} />
         ))}
