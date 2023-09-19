@@ -66,16 +66,16 @@ export const useChat = () => {
   useEffect(() => {
     const messagesCollection = collection(
       firestore,
-      "messages"
+      "messages",
     ) as CollectionReference<TMessage>;
     const messagesQuery = query(
       messagesCollection,
-      orderBy("createdAt", "desc")
+      orderBy("createdAt", "desc"),
     );
 
     const unsubscribe = onSnapshot(messagesQuery, (doc) => {
       setMessages(
-        doc.docs.map((doc) => ({ ...doc.data(), id: doc.id })).reverse()
+        doc.docs.map((doc) => ({ ...doc.data(), id: doc.id })).reverse(),
       );
     });
 

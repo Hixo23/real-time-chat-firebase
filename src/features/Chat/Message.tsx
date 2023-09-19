@@ -42,7 +42,7 @@ export const Message = ({ content, displayName, photoURL }: MessageProps) => {
           <p
             className={`${
               isOwnerMessage ? "bg-blue-600" : "bg-green-600"
-            }  py-2 px-3 rounded-xl `}
+            }  py-2 px-3 md:px-4  rounded-xl `}
           >
             {content}
           </p>

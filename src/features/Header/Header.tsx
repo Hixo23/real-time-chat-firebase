@@ -16,11 +16,12 @@ const Profile = () => {
 
   const menuRef = useRef<ElementRef<"div">>(null);
 
-  const closeOpenMenus = (e: any) => {
+  const closeOpenMenus = (e: MouseEvent) => {
+    const eventTarget = e.target as Node;
     if (
       menuRef.current &&
       isDropdownOpen &&
-      !menuRef.current.contains(e.target)
+      !menuRef.current.contains(eventTarget)
     ) {
       setIsDropdownOpen(false);
     }
@@ -29,10 +30,10 @@ const Profile = () => {
   document.addEventListener("mousedown", closeOpenMenus);
 
   return (
-    <div
+    <header
       onClick={() => setIsDropdownOpen(!isDropdownOpen)}
       ref={menuRef}
-      className="flex items-center gap-4 relative cursor-pointer select-none z-20"
+      className="flex items-center gap-4 py-4 relative cursor-pointer select-none z-20"
     >
       <img
         className="rounded-full w-12 h-12"
@@ -41,7 +42,7 @@ const Profile = () => {
       />
       <p>{user?.displayName}</p>
       {isDropdownOpen && <Dropdown />}
-    </div>
+    </header>
   );
 };
 

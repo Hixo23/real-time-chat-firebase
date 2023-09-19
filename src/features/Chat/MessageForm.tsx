@@ -21,7 +21,7 @@ export const MessageForm = () => {
             color: "#fff",
             backgroundColor: "#7072a9",
           },
-        }
+        },
       );
 
     if (isEmpty)
